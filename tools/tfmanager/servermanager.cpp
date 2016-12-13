@@ -20,11 +20,14 @@
 
 namespace TreeFrog {
 
+static QString serverCommand()
+{
 #if defined(Q_OS_WIN) && !defined(TF_NO_DEBUG)
-#  define TFSERVER_CMD  INSTALL_PATH "/tadpoled"
+    return QCoreApplication::applicationDirPath() + QLatin1String( "/tadpoled" );
 #else
-#  define TFSERVER_CMD  INSTALL_PATH "/tadpole"
+    return QCoreApplication::applicationDirPath() + QLatin1String( "/tadpole" );
 #endif
+}
 
 static QMap<QProcess *, int> serversStatus;
 static uint startCounter = 0;  // start-counter of treefrog servers
@@ -221,7 +224,7 @@ void ServerManager::startServer(int id) const
 #endif
 
     // Executes treefrog server
-    tfserver->start(TFSERVER_CMD, args, QIODevice::ReadOnly);
+    tfserver->start(serverCommand(), args, QIODevice::ReadOnly);
     tfserver->closeReadChannel(QProcess::StandardOutput);
     tfserver->closeWriteChannel();
     tSystemDebug("tfserver started");
@@ -242,7 +245,7 @@ void ServerManager::errorDetect(QProcess::ProcessError error)
 {
     QProcess *server = qobject_cast<QProcess *>(sender());
     if (server) {
-        tSystemError("tfserver error detected(%d). [%s]", error, TFSERVER_CMD);
+        tSystemError("tfserver error detected(%d). [%s]", error, qPrintable(serverCommand()));
         //server->close();  // long blocking..
         server->kill();
     }

@@ -41,7 +41,6 @@ windows {
 INSTALLS += target
 
 DEFINES += TF_VERSION=\\\"$$TF_VERSION\\\"
-DEFINES += INSTALL_PATH=\\\"$$target.path\\\"
 !CONFIG(debug, debug|release) {
   DEFINES += TF_NO_DEBUG
 }
