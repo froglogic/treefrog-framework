@@ -7,7 +7,8 @@ win32 {
     LIBS += -ltreefrog1
   }
 } else {
-  unix:LIBS += -Wl,-rpath,. -Wl,-rpath,/usr/lib -L/usr/lib -ltreefrog
+  unix:QMAKE_RPATH += . /usr/lib
+  unix:LIBS += -L/usr/lib -ltreefrog
   unix:INCLUDEPATH += /usr/include/treefrog
 
   # c++11
