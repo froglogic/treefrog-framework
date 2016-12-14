@@ -27,7 +27,8 @@ windows {
   }
   LIBS += -L"$$target.path"
 } else:unix {
-  LIBS += -Wl,-rpath,$$lib.path -L$$lib.path -ltreefrog
+  QMAKE_RPATHDIR += $ORIGIN/../lib
+  LIBS += -L$$lib.path -ltreefrog
 
   # c++11
   lessThan(QT_MAJOR_VERSION, 5) {
