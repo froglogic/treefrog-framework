@@ -7,7 +7,11 @@ win32 {
     LIBS += -ltreefrog1
   }
 } else {
-  unix:QMAKE_RPATHDIR += $ORIGIN/../lib
+  macx {
+    QMAKE_RPATHDIR += @executable_path/../lib
+  } else:unix {
+    QMAKE_RPATHDIR += $ORIGIN/../lib
+  }
   unix:LIBS += -L/usr/lib -ltreefrog
   unix:INCLUDEPATH += /usr/include/treefrog
 

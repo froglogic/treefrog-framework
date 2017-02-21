@@ -27,7 +27,11 @@ windows {
   }
   LIBS += -L"$$target.path"
 } else:unix {
-  QMAKE_RPATHDIR += $ORIGIN/../lib
+  macx {
+    QMAKE_RPATHDIR += @executable_path/../lib
+  } else {
+    QMAKE_RPATHDIR += $ORIGIN/../lib
+  }
   LIBS += -L$$lib.path -ltreefrog
 
   # c++11
