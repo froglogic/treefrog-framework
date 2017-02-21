@@ -7,7 +7,7 @@ win32 {
     LIBS += -ltreefrog1
   }
 } else {
-  unix:QMAKE_RPATH += . /usr/lib
+  unix:QMAKE_RPATHDIR += $ORIGIN/../lib
   unix:LIBS += -L/usr/lib -ltreefrog
   unix:INCLUDEPATH += /usr/include/treefrog
 

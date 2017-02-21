@@ -130,7 +130,6 @@ while [ -n "`echo $1 | grep '-'`" ]; do
 done
 
 cd "$BASEDIR"
-$SED "s|unix:QMAKE_RPATH +=.*$|unix:QMAKE_RPATHDIR += \$ORIGIN/../lib|" defaults/appbase.pri
 $SED "s|unix:LIBS +=.*$|unix:LIBS += -L$LIBDIR -ltreefrog|" defaults/appbase.pri
 $SED "s|unix:INCLUDEPATH +=.*$|unix:INCLUDEPATH += $INCLUDEDIR|" defaults/appbase.pri
 
