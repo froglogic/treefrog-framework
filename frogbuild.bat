@@ -8,7 +8,7 @@ call "%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" x86 || goto :EOF
 echo on
 set SRC=%~dp0
 set DST=%1
-set PATH=Q:\binary\MSVC14\x86\5.6.0\5.6\msvc2015\bin;%PATH%
+set PATH=Q:\binary\5.6.0\msvc2015\bin;%PATH%
 call configure.bat --prefix "%DST%" || goto :EOF
 echo on
 cd %SRC%\src
