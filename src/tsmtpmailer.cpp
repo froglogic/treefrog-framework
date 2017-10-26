@@ -415,7 +415,7 @@ int TSmtpMailer::read(QList<QByteArray> *reply)
     for (;;) {
         rcv = socket->readLine().trimmed();
         if (rcv.isEmpty()) {
-            if (socket->waitForReadyRead(5000)) {
+            if (socket->waitForReadyRead(20000)) {
                 continue;
             } else {
                 break;
